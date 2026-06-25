@@ -1,0 +1,60 @@
+name: CI Database (Liquibase Validation)
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: ecoruteando
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Esperar PostgreSQL
+        run: sleep 10
+
+      - name: Instalar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Descargar Liquibase
+        run: |
+          LIQUIBASE_VERSION=4.27.0
+
+          curl -fL -o liquibase.tar.gz \
+          https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
+
+          tar -xzf liquibase.tar.gz
+
+      - name: Validar changelog (PRO)
+        run: |
+          ./liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando" \
+            --username=postgres \
+            --password=postgres \
+            --changeLogFile=changelog/db.changelog-master.yaml \
+            validate
+
+      - name: Simular migración (updateSQL)
+        run: |
+          ./liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando" \
+            --username=postgres \
+            --password=postgres \
+            --changeLogFile=changelog/db.changelog-master.yaml \
+            updateSQL

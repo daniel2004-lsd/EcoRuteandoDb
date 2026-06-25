@@ -1,0 +1,160 @@
+databaseChangeLog:
+  - changeSet:
+      id: 21c0a068-8de4-43ac-9170-2398fd5faa6a
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility points_of_interest table.
+      changes:
+        - sqlFile:
+            path: 001_create_table_points_of_interest.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/001_create_table_points_of_interest.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 5c26942a-6747-410b-ac53-ebe437c48b38
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility routes table.
+      changes:
+        - sqlFile:
+            path: 002_create_table_routes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/002_create_table_routes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 6810bbb4-0053-4ec6-ae04-a2bb91c2b548
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility route_poi table.
+      changes:
+        - sqlFile:
+            path: 003_create_table-route-poi.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/003_create_table-route-poi.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: e7ec69f2-e268-49da-b29b-42ef0c8e016c
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility route_usage table.
+      changes:
+        - sqlFile:
+            path: 004_create_table_route_usage.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/004_create_table_route_usage.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 4d17a60a-fce9-4a6f-bbf5-8fe7872029ae
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the default partition for mobility route_usage.
+      changes:
+        - sqlFile:
+            path: 005_create_table_route_usage_default.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/005_create_table_route_usage_default.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 0f8101e5-ab29-48ca-bb8e-b609a7a948c8
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility address_history table.
+      changes:
+        - sqlFile:
+            path: 006_create_table_address_history.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/006_create_table_address_history.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 4cf8096a-4c36-4d01-8bd9-4cb021b1fbf0
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility shared_routes table.
+      changes:
+        - sqlFile:
+            path: 006_create_table_shared_routes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/006_create_table_shared_routes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: a6e5a972-8367-4cbb-8aba-f4d7bee4948b
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility favorite_routes table.
+      changes:
+        - sqlFile:
+            path: 007_create_table_favorite_routes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/007_create_table_favorite_routes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 8c532ee0-8853-45bd-bb83-c609e3eeb52f
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility rating_votes table.
+      changes:
+        - sqlFile:
+            path: 008_create_table_rating_votes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/008_create_table_rating_votes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: af250c6b-b5ef-4c7f-b409-cbc90120189f
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Creates the mobility ratings table.
+      changes:
+        - sqlFile:
+            path: 009_create_table_ratings.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/009_create_table_ratings.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
