@@ -1,8 +1,8 @@
-databaseChangeLog:
+﻿databaseChangeLog:
   - changeSet:
       id: c8c8ff1a-8360-49a2-81ce-a4f368e4d286
       author: daniel2004-lsd
-      logicalFilePath: db/changelnieog/changes/001_base/001_enable_uuid_extension.sql
+      logicalFilePath: db/changelog/changes/001_base/001_enable_uuid_extension.sql
       labels: "BD-01-dev,ddl,base,extensions"
       comment: Enables the uuid-ossp extension for the database baseline.
       changes:
@@ -13,5 +13,90 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: ../../05_rollbacks/01_ddl/00_extensions/001_enable_uuid_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 777ddd45-acca-4600-9e54-aaed25eaef80
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/002_enable_postgis_extension.sql
+      labels: "BD-01-dev,ddl,base,extensions"
+      comment: Enables the postgis extension for geospatial data.
+      changes:
+        - sqlFile:
+            path: 002_enable_postgis_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/002_enable_postgis_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: a00a262c-0954-43f5-adc1-5905ab712b3a
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/003_enable_pg_trgm_extension.sql
+      labels: "BD-01-dev,ddl,base,extensions"
+      comment: Enables the pg_trgm extension for trigram search.
+      changes:
+        - sqlFile:
+            path: 003_enable_pg_trgm_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/003_enable_pg_trgm_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: a205502b-fb11-49f8-b6eb-21c27848f7a0
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/004_enable_unaccent_extension.sql
+      labels: "BD-01-dev,ddl,base,extensions"
+      comment: Enables the unaccent extension for normalized text search.
+      changes:
+        - sqlFile:
+            path: 004_enable_unaccent_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/004_enable_unaccent_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 15ead23d-23b2-45b9-b204-6ff7c68f9f7b
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/005_enable_pgcrypto_extension.sql
+      labels: "BD-01-dev,ddl,base,extensions"
+      comment: Enables the pgcrypto extension for cryptographic functions.
+      changes:
+        - sqlFile:
+            path: 005_enable_pgcrypto_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/005_enable_pgcrypto_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: e21cd18e-8cb6-45a9-ba69-562a90ae6fb9
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/006_enable_citext_extension.sql
+      labels: "BD-01-dev,ddl,base,extensions"
+      comment: Enables the citext extension for case-insensitive text.
+      changes:
+        - sqlFile:
+            path: 006_enable_citext_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/006_enable_citext_extension.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

@@ -1,6 +1,6 @@
-CREATE TYPE security.estado_usuario  AS ENUM ('ACTIVO','INACTIVO','BLOQUEADO','ELIMINADO');
-CREATE TYPE security.nivel_error     AS ENUM ('INFO','WARNING','ERROR','CRITICO');
-CREATE TYPE security.proveedor_oauth AS ENUM ('google','facebook','github','apple');
-CREATE TYPE security.idioma_pref     AS ENUM ('es','en','pt','fr');
-CREATE TYPE security.tema_ui         AS ENUM ('claro','oscuro','sistema');
-CREATE TYPE security.metodo_2fa      AS ENUM ('totp','sms','email');
+CREATE TYPE security.user_status         AS ENUM ('ACTIVE','INACTIVE','BLOCKED','DELETED');
+CREATE TYPE security.error_level         AS ENUM ('INFO','WARNING','ERROR','CRITICAL');
+CREATE TYPE security.oauth_provider      AS ENUM ('google','facebook','github','apple');
+CREATE TYPE security.preferred_language  AS ENUM ('es','en','pt','fr');
+CREATE TYPE security.ui_theme            AS ENUM ('light','dark','system');
+CREATE TYPE security.two_factor_method   AS ENUM ('totp','sms','email');
