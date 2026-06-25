@@ -34,7 +34,11 @@ jobs:
 
       - name: Descargar Liquibase
         run: |
-          curl -L -o liquibase.tar.gz https://github.com/liquibase/liquibase/releases/latest/download/liquibase-4.27.0.tar.gz
+          LIQUIBASE_VERSION=4.27.0
+
+          curl -fL -o liquibase.tar.gz \
+          https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
+
           tar -xzf liquibase.tar.gz
 
       - name: Validar changelog (PRO)
