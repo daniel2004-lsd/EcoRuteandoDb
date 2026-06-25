@@ -1,4 +1,4 @@
-DROP TYPE IF EXISTS mobility.tipo_busqueda;
-DROP TYPE IF EXISTS mobility.origen_uso;
-DROP TYPE IF EXISTS mobility.estado_ruta;
-DROP TYPE IF EXISTS mobility.tipo_transporte;
+DROP TYPE IF EXISTS mobility.search_type;
+DROP TYPE IF EXISTS mobility.usage_source;
+DROP TYPE IF EXISTS mobility.route_status;
+DROP TYPE IF EXISTS mobility.transport_type;

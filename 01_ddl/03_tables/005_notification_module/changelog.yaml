@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: c758bbd5-0e7e-41d8-ab03-f7a6e0fa59a7
+      author: daniel2004-lsd
+      labels: "ddl,tables,notifications"
+      comment: Creates the notifications notification_templates table.
+      changes:
+        - sqlFile:
+            path: 001_create_table_notification_templates.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/005_notification_module/001_create_table_notification_templates.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 7f46ba0f-96b2-405e-ba98-3ac823ed443a
+      author: daniel2004-lsd
+      labels: "ddl,tables,notifications"
+      comment: Creates the notifications notifications table.
+      changes:
+        - sqlFile:
+            path: 002_create_table_notifications.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/005_notification_module/002_create_table_notifications.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

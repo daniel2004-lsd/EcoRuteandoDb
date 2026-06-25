@@ -1,0 +1,96 @@
+databaseChangeLog:
+  - changeSet:
+      id: 28a33617-96b3-4f2b-9030-7a914c5579f7
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin support_tickets table.
+      changes:
+        - sqlFile:
+            path: 001_create_table_support_ticket.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/001_create_table_support_ticket.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: f535ca2e-cd7f-4e75-8c6b-ebf372c58112
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin support_messages table.
+      changes:
+        - sqlFile:
+            path: 002_create_table_support_messages.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/002_create_table_support_messages.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 8893f8cd-1db6-40f7-95db-6afad8f19ebe
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin exports table.
+      changes:
+        - sqlFile:
+            path: 003_create_table_exports.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/003_create_table_exports.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 9386db83-9c9c-42bb-8597-486849a06bde
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin system_configuration table.
+      changes:
+        - sqlFile:
+            path: 004_create_table_system_configuration.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/004_create_table_system_configuration.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 843acdda-d607-45ab-9f04-6fe7e9db9bc5
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin transport_factors table.
+      changes:
+        - sqlFile:
+            path: 005_create_table_transport_factors.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/005_create_table_transport_factors.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 75a92cf2-217e-4f07-9eed-20e3cf8b1630
+      author: daniel2004-lsd
+      labels: "ddl,tables,admin"
+      comment: Creates the admin daily_statistics table.
+      changes:
+        - sqlFile:
+            path: 006_create_table_daily_statistics.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/006_create_table_daily_statistics.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

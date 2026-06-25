@@ -1,1 +1,80 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 641d8995-b00e-4a67-a159-33ed3dd8691f
+      author: daniel2004-lsd
+      labels: "ddl,types,security"
+      comment: Creates security enum types.
+      changes:
+        - sqlFile:
+            path: 001_security_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/001_security_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: ae9a76c0-0c03-4b1a-b119-c60407a4d925
+      author: daniel2004-lsd
+      labels: "ddl,types,mobility"
+      comment: Creates mobility enum types.
+      changes:
+        - sqlFile:
+            path: 002_mobility_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/002_mobility_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 1aa11bb3-027d-45dc-8505-ba35295ea3e9
+      author: daniel2004-lsd
+      labels: "ddl,types,community"
+      comment: Creates community enum types.
+      changes:
+        - sqlFile:
+            path: 003_community_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/003_community_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 55c41c7b-71ef-43d7-a5e4-9294cdb94d06
+      author: daniel2004-lsd
+      labels: "ddl,types,notifications"
+      comment: Creates notification enum types.
+      changes:
+        - sqlFile:
+            path: 004_notification_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/004_notification_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 9251d658-013d-4ba7-a926-eece2e7e5569
+      author: daniel2004-lsd
+      labels: "ddl,types,admin"
+      comment: Creates admin enum types.
+      changes:
+        - sqlFile:
+            path: 005_admin_types.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/02_types/005_admin_types.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

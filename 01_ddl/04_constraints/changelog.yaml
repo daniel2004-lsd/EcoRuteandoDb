@@ -1,1 +1,12 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: dcc2d2ac-c769-4539-a8ba-7f865b73f5b5
+      author: daniel2004-lsd
+      labels: "ddl,constrains"
+      comment: Creates the constrains.
+      changes:
+        - sqlFile:
+            path: "001_additional_constraints_foreign_keys.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+    

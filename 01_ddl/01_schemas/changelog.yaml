@@ -1,1 +1,103 @@
-databaseChangeLog: []
+﻿databaseChangeLog:
+  - changeSet:
+      id: 008a03ce-6bb3-4120-bcab-93ffa19acbe1
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/001_create_security_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the security schema.
+      changes:
+        - sqlFile:
+            path: 001_create_security_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/001_create_security_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: a9f3d963-c682-49de-a264-6068c2124751
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/002_create_community_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the community schema.
+      changes:
+        - sqlFile:
+            path: 002_create_community_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/002_create_community_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: f83368fe-7827-459e-aa8c-36371bb247e8
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/003_create_notifications_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the notifications schema.
+      changes:
+        - sqlFile:
+            path: 003_create_notifications_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/003_create_notifications_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: bc804157-a53c-43ce-8437-49cd618feb6f
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/004_create_integrations_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the integrations schema.
+      changes:
+        - sqlFile:
+            path: 004_create_integrations_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/004_create_integrations_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: c9eb9030-caa1-477e-a5c6-86ed20f54b72
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/005_create_admin_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the admin schema.
+      changes:
+        - sqlFile:
+            path: 005_create_admin_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/005_create_admin_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+            
+  - changeSet:
+      id: 6f8f9c4d-3d9b-4a5e-9b91-7e2d8c1f4a10
+      author: daniel2004-lsd
+      logicalFilePath: db/changelog/changes/001_base/006_create_mobility_schema.sql
+      labels: "BD-01-dev,ddl,base,schemas"
+      comment: Creates the mobility schema.
+      changes:
+        - sqlFile:
+            path: 006_create_mobility_schema.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/01_schemas/006_create_mobility_schema.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
