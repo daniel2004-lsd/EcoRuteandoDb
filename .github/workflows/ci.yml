@@ -3,7 +3,7 @@ name: CI Database (Liquibase Validation)
 on:
   pull_request:
     branches:
-      - dev
+      - develop
 
 jobs:
   validate:
