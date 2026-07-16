@@ -9,4 +9,43 @@ databaseChangeLog:
             path: "001_additional_constraints_foreign_keys.sql"
             relativeToChangelogFile: true
             stripComments: false
-    
+      rollback:
+        - sqlFile:
+            path: "../../../05_rollbacks/01_ddl/04_constraints/001_additional_constraints_foreign_keys.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+  
+  - changeSet:
+      id: 91d7b3d7-7a54-4fd9-9e53-8d8d4dbe2d01
+      author: daniel2004-lsd
+      labels: "ddl,constraints"
+      comment: Convert PostgreSQL enum columns to varchar in security.users.
+      changes:
+        - sqlFile:
+            path: "002_alter_users_enum_to_varchar.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: "../../../05_rollbacks/01_ddl/04_constraints002_alter_users_enum_to_varchar.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+
+  - changeSet:
+      id: 8d6493be-59dd-4e06-8d88-7f01b88f6d11
+      author: daniel2004-lsd
+      labels: "ddl,constraints"
+      comment: Add CHECK constraints for users string values.
+      changes:
+        - sqlFile:
+            path: "003_users_check_constraints.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: "../../../05_rollbacks/01_ddl/05_constraints/003_users_check_constraints.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
