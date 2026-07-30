@@ -238,3 +238,20 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/03_table/006_security_module/015_create_table_error_logs_default.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+
+  - changeSet:
+      id: 53ece280-f886-4520-a44c-24e04e47a705
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the default partition for security error_logs.
+      changes:
+        - sqlFile:
+            path: 016_create_table_refresh_tokens.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/016_create_table_refresh_tokens.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
