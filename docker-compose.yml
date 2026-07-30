@@ -21,20 +21,28 @@ services:
     build:
       context: .
       dockerfile: docker/liquibase/Dockerfile
+
     depends_on:
       postgres:
         condition: service_healthy
+
     working_dir: /workspace
+
     volumes:
-      - ./:/workspace
-    entrypoint: ["liquibase"]  
-   
+    - ./:/workspace
+
+    entrypoint:
+    - sh
+    - -c
+
     command: >
-      --changeLogFile=changelog/db.changelog-master.yaml 
+      "sleep 10 &&
+      liquibase
+      --changeLogFile=changelog/db.changelog-master.yaml
       --url=jdbc:postgresql://postgres:5432/ecoRuteando_db
       --username=postgres
       --password=postgres
-      update
+      update"
 
 volumes:
   postgres_data:
