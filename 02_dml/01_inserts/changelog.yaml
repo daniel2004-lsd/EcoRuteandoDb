@@ -1,0 +1,35 @@
+databaseChangeLog:
+  
+  - changeSet:
+      id: 3f75f7b4-4f16-4f4c-88f6-26d3ab2c66f2
+      author: daniel2004-lsd
+      labels: "dml,inserts,security"
+      comment: Inserts initial security permissions.
+      changes:
+        - sqlFile:
+            path: 001_insert_security_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/001_insert_security_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 7d7d8a27-97fa-42e7-bf56-cdb6b8a7df35
+      author: daniel2004-lsd
+      labels: "dml,inserts,security"
+      comment: Inserts initial role permissions.
+      changes:
+        - sqlFile:
+            path: 002_insert_security_role_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/002_insert_security_role_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
