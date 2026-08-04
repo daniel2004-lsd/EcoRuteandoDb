@@ -1,5 +1,5 @@
 CREATE TABLE mobility.routes (
-    route_id             UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id                   UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name                 VARCHAR(150) NOT NULL,
     description          TEXT,
     transport_type       mobility.transport_type NOT NULL,

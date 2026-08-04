@@ -1,5 +1,5 @@
 CREATE TABLE admin.transport_factors (
-    factor_id          SERIAL PRIMARY KEY,
+    id          UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     transport_type     mobility.transport_type NOT NULL,
     co2_factor_kg_km   NUMERIC(8,6) NOT NULL,
     calorie_factor_km  NUMERIC(6,2),

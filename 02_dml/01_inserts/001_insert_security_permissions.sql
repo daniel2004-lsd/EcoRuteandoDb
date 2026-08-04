@@ -1,19 +1,16 @@
-INSERT INTO security.permissions (permission_id, name, description)
+INSERT INTO security.permissions (name, description)
 VALUES
+('users.read', 'Consultar usuarios'),
+('users.create', 'Crear usuarios'),
+('users.update', 'Actualizar usuarios'),
+('users.delete', 'Eliminar usuarios'),
 
-(1, 'users.read', 'Consultar usuarios'),
-(2, 'users.create', 'Crear usuarios'),
-(3, 'users.update', 'Actualizar usuarios'),
-(4, 'users.delete', 'Eliminar usuarios'),
+('roles.read', 'Consultar roles'),
+('roles.create', 'Crear roles'),
+('roles.update', 'Actualizar roles'),
+('roles.delete', 'Eliminar roles'),
 
-
-(5, 'roles.read', 'Consultar roles'),
-(6, 'roles.create', 'Crear roles'),
-(7, 'roles.update', 'Actualizar roles'),
-(8, 'roles.delete', 'Eliminar roles'),
-
-
-(9, 'permissions.read', 'Consultar permisos'),
-(10, 'permissions.create', 'Crear permisos'),
-(11, 'permissions.update', 'Actualizar permisos'),
-(12, 'permissions.delete', 'Eliminar permisos');
+('permissions.read', 'Consultar permisos'),
+('permissions.create', 'Crear permisos'),
+('permissions.update', 'Actualizar permisos'),
+('permissions.delete', 'Eliminar permisos');

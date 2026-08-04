@@ -191,21 +191,7 @@ databaseChangeLog:
             relativeToChangelogFile: true
             stripComments: false
 
-  - changeSet:
-      id: 5374c741-1853-437f-a89c-b436c925d141
-      author: daniel2004-lsd
-      labels: "ddl,tables,security"
-      comment: Creates the default partition for security audit_logs.
-      changes:
-        - sqlFile:
-            path: 013_create_table_audit_logs_default.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/013_create_table_audit_logs_default.rollback.sql
-            relativeToChangelogFile: true
-            stripComments: false
+ 
 
   - changeSet:
       id: 83d667f8-3ee8-44ef-8e30-66849afdeda4
@@ -214,28 +200,12 @@ databaseChangeLog:
       comment: Creates the security error_logs table.
       changes:
         - sqlFile:
-            path: 014_create_table_error_logs.sql
+            path: 013_create_table_error_logs.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/014_create_table_error_logs.rollback.sql
-            relativeToChangelogFile: true
-            stripComments: false
-
-  - changeSet:
-      id: 1899a285-b617-4abd-90f8-f8bfa9caf678
-      author: daniel2004-lsd
-      labels: "ddl,tables,security"
-      comment: Creates the default partition for security error_logs.
-      changes:
-        - sqlFile:
-            path: 015_create_table_error_logs_default.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/015_create_table_error_logs_default.rollback.sql
+            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/013_create_table_error_logs.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -247,11 +217,11 @@ databaseChangeLog:
       comment: Creates the default partition for security error_logs.
       changes:
         - sqlFile:
-            path: 016_create_table_refresh_tokens.sql
+            path: 014_create_table_refresh_tokens.sql
             relativeToChangelogFile: true
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/016_create_table_refresh_tokens.rollback.sql
+            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/014_create_table_refresh_tokens.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

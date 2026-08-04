@@ -1,5 +1,5 @@
 CREATE TABLE community.alerts (
-    alert_id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     type            community.alert_type NOT NULL,
     title           VARCHAR(200) NOT NULL,
     message         TEXT NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE community.alerts (
     valid_until     TIMESTAMPTZ,
     created_by      UUID,
     report_id       UUID,
-    weather_data_ref BIGINT,
+    weather_data_id  UUID,
     is_active       BOOLEAN NOT NULL DEFAULT TRUE,
     created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
     CHECK (valid_until IS NULL OR valid_until > valid_from)

@@ -1,5 +1,5 @@
 CREATE TABLE community.obstacle_reports (
-    report_id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id          UUID NOT NULL,
     report_type      VARCHAR(100) NOT NULL,
     description      TEXT NOT NULL,

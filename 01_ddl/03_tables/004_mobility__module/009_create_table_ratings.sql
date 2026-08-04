@@ -1,5 +1,5 @@
 CREATE TABLE mobility.ratings (
-    rating_id    UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id    UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id      UUID     NOT NULL,
     route_id     UUID     NOT NULL,
     usage_id     BIGINT,

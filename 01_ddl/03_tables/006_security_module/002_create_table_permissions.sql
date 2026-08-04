@@ -1,5 +1,5 @@
 CREATE TABLE security.permissions (
-    permission_id SERIAL PRIMARY KEY,
+    id UUID  PRIMARY KEY DEFAULT uuid_generate_v4(),
     name          VARCHAR(80) NOT NULL UNIQUE,
     description   VARCHAR(255),
     created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),

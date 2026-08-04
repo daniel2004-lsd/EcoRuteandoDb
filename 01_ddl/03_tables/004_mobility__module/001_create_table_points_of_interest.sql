@@ -1,5 +1,5 @@
 CREATE TABLE mobility.points_of_interest (
-    poi_id          SERIAL PRIMARY KEY,
+    id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name            VARCHAR(150) NOT NULL,
     poi_type        VARCHAR(80)  NOT NULL,
     description     TEXT,
