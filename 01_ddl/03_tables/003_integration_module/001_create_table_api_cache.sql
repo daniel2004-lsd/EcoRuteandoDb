@@ -1,5 +1,5 @@
 CREATE TABLE integrations.api_cache (
-    cache_id         BIGSERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     provider         VARCHAR(60)  NOT NULL,
     endpoint         VARCHAR(200) NOT NULL,
     parameters       JSONB        NOT NULL,

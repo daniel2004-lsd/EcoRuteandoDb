@@ -1,5 +1,5 @@
 CREATE TABLE mobility.address_history (
-    history_id   BIGSERIAL PRIMARY KEY,
+    id  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id      UUID NOT NULL,
     search_text  VARCHAR(300) NOT NULL,
     place_id     VARCHAR(255),

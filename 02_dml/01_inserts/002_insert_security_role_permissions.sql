@@ -1,22 +1,19 @@
-
-
 INSERT INTO security.role_permissions (role_id, permission_id)
-VALUES
-(1,1),
-(1,2),
-(1,3),
-(1,4),
-(1,5),
-(1,6),
-(1,7),
-(1,8),
-(1,9),
-(1,10),
-(1,11),
-(1,12);
-
-INSERT INTO security.role_permissions (role_id, permission_id)
-VALUES
-(2,1),
-(2,5),
-(2,9); 
+SELECT r.id, p.id
+FROM security.roles r
+JOIN security.permissions p
+ON p.name IN (
+    'users.read',
+    'users.create',
+    'users.update',
+    'users.delete',
+    'roles.read',
+    'roles.create',
+    'roles.update',
+    'roles.delete',
+    'permissions.read',
+    'permissions.create',
+    'permissions.update',
+    'permissions.delete'
+)
+WHERE r.name = 'Administrator';
