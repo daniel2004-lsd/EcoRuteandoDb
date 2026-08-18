@@ -1,5 +1,5 @@
 CREATE TABLE security.users (
-    user_id                 UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     first_name              VARCHAR(100) NOT NULL,
     last_name               VARCHAR(100),
     email                   CITEXT NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE security.users (
     email_verified          BOOLEAN NOT NULL DEFAULT FALSE,
     status                  security.user_status NOT NULL DEFAULT 'ACTIVE',
     is_guest                BOOLEAN NOT NULL DEFAULT FALSE,
-    primary_role_id         INT,
+    primary_role_id         UUID,
     preferred_language      security.preferred_language NOT NULL DEFAULT 'en',
     ui_theme                security.ui_theme NOT NULL DEFAULT 'system',
     primary_color           VARCHAR(7)

@@ -1,5 +1,5 @@
 CREATE TABLE admin.exports (
-    export_id      UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id      UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id        UUID,
     export_type    VARCHAR(80) NOT NULL,
     format         admin.export_format NOT NULL,

@@ -1,5 +1,5 @@
 CREATE TABLE security.password_recovery (
-    recovery_id   UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id   UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id       UUID NOT NULL,
     token_hash    VARCHAR(64) UNIQUE NOT NULL,
     expires_at    TIMESTAMPTZ NOT NULL,
@@ -7,5 +7,6 @@ CREATE TABLE security.password_recovery (
     used_at       TIMESTAMPTZ,
     request_ip    INET,
     usage_ip      INET,
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ  NULL 
 );

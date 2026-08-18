@@ -1,5 +1,5 @@
 CREATE TABLE security.oauth_accounts (
-    oauth_id            SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY,
     user_id             UUID NOT NULL,
     provider            security.oauth_provider NOT NULL,
     external_id         VARCHAR(255) NOT NULL,

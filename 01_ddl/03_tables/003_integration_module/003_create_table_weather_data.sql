@@ -1,5 +1,5 @@
 CREATE TABLE integrations.weather_data (
-    weather_id          BIGSERIAL PRIMARY KEY,
+    id         UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     location            GEOGRAPHY(POINT, 4326) NOT NULL,
     city                VARCHAR(100),
     temperature_c       NUMERIC(5,2),

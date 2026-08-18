@@ -1,5 +1,5 @@
 CREATE TABLE notifications.notification_templates (
-    template_id    SERIAL PRIMARY KEY,
+    id   UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name           VARCHAR(100) NOT NULL UNIQUE,
     notification_type notifications.notification_type NOT NULL,
     subject        VARCHAR(200),

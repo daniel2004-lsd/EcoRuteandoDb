@@ -1,5 +1,5 @@
 CREATE TABLE integrations.air_quality_data (
-    air_quality_id BIGSERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     location       GEOGRAPHY(POINT, 4326) NOT NULL,
     city           VARCHAR(100),
     pm25           NUMERIC(8,2),

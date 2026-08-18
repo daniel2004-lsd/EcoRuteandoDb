@@ -1,5 +1,5 @@
 CREATE TABLE security.security_policies (
-    policy_id                SERIAL PRIMARY KEY,
+    id SMALLINT PRIMARY KEY DEFAULT 1,
     min_password_length      INT     NOT NULL DEFAULT 8,
     require_uppercase        BOOLEAN NOT NULL DEFAULT TRUE,
     require_numbers          BOOLEAN NOT NULL DEFAULT TRUE,
