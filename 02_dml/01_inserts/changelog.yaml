@@ -33,3 +33,20 @@ databaseChangeLog:
             path: ../../05_rollbacks/02_dml/01_inserts/002_insert_security_role_permissions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 5eea77f5-9f89-49d1-93b2-fa875ab2194d
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility"
+      comment: Inserts the routes.read permission and assigns it to Admin role.
+      changes:
+        - sqlFile:
+            path: 003_insert_mobility_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/003_insert_mobility_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
