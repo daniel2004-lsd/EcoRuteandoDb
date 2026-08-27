@@ -16,4 +16,4 @@ ON p.name IN (
     'permissions.update',
     'permissions.delete'
 )
-WHERE r.name = 'Administrator';
+WHERE r.name = 'Admin';
