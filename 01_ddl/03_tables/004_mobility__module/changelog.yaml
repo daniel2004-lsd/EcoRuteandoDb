@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/001_create_table_points_of_interest.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/001_create_table_points_of_interest.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -27,7 +27,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/002_create_table_routes.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/002_create_table_routes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -43,7 +43,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/003_create_table-route-poi.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/003_create_table-route-poi.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -59,7 +59,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/004_create_table_route_usage.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/004_create_table_route_usage.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -75,7 +75,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/005_create_table_route_usage_default.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/005_create_table_route_usage_default.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -91,7 +91,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/006_create_table_address_history.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/006_create_table_address_history.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -107,7 +107,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/006_create_table_shared_routes.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/006_create_table_shared_routes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -123,7 +123,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/007_create_table_favorite_routes.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/007_create_table_favorite_routes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -139,7 +139,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/008_create_table_rating_votes.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/008_create_table_rating_votes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -155,7 +155,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/009_create_table_ratings.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/009_create_table_ratings.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
