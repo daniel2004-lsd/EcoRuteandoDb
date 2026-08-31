@@ -50,3 +50,60 @@ databaseChangeLog:
             path: ../../05_rollbacks/02_dml/01_inserts/003_insert_mobility_permissions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: a5e0ba84-50b7-45a8-8022-3c05ebab6048
+      author: daniel2004-lsd
+      labels: "dml,inserts,admin"
+      comment: Seeds initial transport factors by transport type.
+      changes:
+        - sqlFile:
+            path: 004_insert_transport_factors.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sql: DELETE FROM admin.transport_factors;
+
+  - changeSet:
+      id: d7be90ce-0934-4bd9-9a8f-3c1979faa371
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility"
+      comment: Grants routes.read and routes.write permissions to the User role.
+      changes:
+        - sqlFile:
+            path: 005_insert_mobility_permissions_for_users.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sql: |
+            DELETE FROM security.role_permissions
+            WHERE role_id = (SELECT id FROM security.roles WHERE name = 'User')
+              AND permission_id IN (SELECT id FROM security.permissions WHERE name IN ('routes.read', 'routes.write'));
+
+  - changeSet:
+      id: d76176e7-4b2d-4468-a7ef-0e2006da8493
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility,security"
+      comment: Seeds missing route, role-permission, user-role and security-policy permissions and assigns them to roles.
+      changes:
+        - sqlFile:
+            path: 006_insert_missing_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sql: |
+            DELETE FROM security.role_permissions
+            WHERE permission_id IN (SELECT id FROM security.permissions
+              WHERE name IN ('routes.write', 'routes.delete',
+                             'rolepermissions.read', 'rolepermissions.assign', 'rolepermissions.remove',
+                             'userroles.read', 'userroles.assign', 'userroles.remove',
+                             'securitypolicies.read', 'securitypolicies.update'));
+
+            DELETE FROM security.permissions
+            WHERE name IN ('routes.write', 'routes.delete',
+                           'rolepermissions.read', 'rolepermissions.assign', 'rolepermissions.remove',
+                           'userroles.read', 'userroles.assign', 'userroles.remove',
+                           'securitypolicies.read', 'securitypolicies.update');
