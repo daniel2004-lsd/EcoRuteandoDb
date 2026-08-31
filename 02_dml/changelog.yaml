@@ -1,16 +1,19 @@
 databaseChangeLog:
   - include:
-      file: 00_inserts/changelog.yaml
+      file: 00_roles/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 01_updates/changelog.yaml
+      file: 01_inserts/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 02_deletes/changelog.yaml
+      file: 02_updates/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 03_upserts/changelog.yaml
+      file: 03_deletes/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 04_patches/changelog.yaml
+      file: 04_upserts/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 05_patches/changelog.yaml
       relativeToChangelogFile: true

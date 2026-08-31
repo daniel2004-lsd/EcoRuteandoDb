@@ -1,3 +1,3 @@
-CREATE TYPE notification.tipo_notif  AS ENUM ('sistema','alerta','social','campana','soporte');
-CREATE TYPE notification.canal_notif AS ENUM ('inapp','email','push','sms');
+CREATE TYPE notifications.notification_type AS ENUM ('system','alert','social','campaign','support');
+CREATE TYPE notifications.notification_channel AS ENUM ('inapp','email','push','sms');
  

@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3d5d8b65-2f38-4b9a-a5f1-0f9d1e5a7c21
+      author: daniel2004-lsd
+      labels: "dml,roles"
+      comment: Inserts default application roles.
+      changes:
+        - sqlFile:
+            path: 001_seed_roles.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/00_roles/001_seed_roles.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

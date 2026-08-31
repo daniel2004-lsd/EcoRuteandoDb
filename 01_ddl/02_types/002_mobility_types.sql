@@ -1,5 +1,5 @@
-CREATE TYPE mobility.tipo_transporte AS ENUM ('bicicleta','transporte_publico','mixto','caminata');
-CREATE TYPE mobility.estado_ruta     AS ENUM ('activa','inactiva','en_revision','archivada');
-CREATE TYPE mobility.origen_uso      AS ENUM ('web','movil','pwa');
-CREATE TYPE mobility.tipo_busqueda   AS ENUM ('busqueda','origen','destino');
+CREATE TYPE mobility.transport_type AS ENUM ('bike','public_transport','mixed','walking','car');
+CREATE TYPE mobility.route_status   AS ENUM ('active','inactive','under_review','archived');
+CREATE TYPE mobility.usage_source   AS ENUM ('web','mobile','pwa');
+CREATE TYPE mobility.search_type    AS ENUM ('search','origin','destination');
  

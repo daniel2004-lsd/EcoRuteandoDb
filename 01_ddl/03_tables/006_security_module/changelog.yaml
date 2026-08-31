@@ -1,0 +1,227 @@
+databaseChangeLog:
+  - changeSet:
+      id: cd74df9a-28a2-4cb3-bb4b-9329bea60a14
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security roles table.
+      changes:
+        - sqlFile:
+            path: 001_create_table_roles.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/001_create_table_roles.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: ea558199-67eb-4564-903c-df57356c608b
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security permissions table.
+      changes:
+        - sqlFile:
+            path: 002_create_table_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/002_create_table_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: f4b33ff1-a8a8-4405-ab3f-080c6c297d7d
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security role_permissions table.
+      changes:
+        - sqlFile:
+            path: 003_create_table_role_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/003_create_table_role_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 2d039abb-8ee6-43c0-8b18-aa4789ad2c1f
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security security_policies table.
+      changes:
+        - sqlFile:
+            path: 004_create_table_security_policies.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/004_create_table_security_policies.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: efa646ed-8d1a-4664-88ad-9f5bb248e442
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security users table.
+      changes:
+        - sqlFile:
+            path: 005_create_table_users.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/005_create_table_users.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 10d3b317-f13f-4c9a-8b5e-3143a6890c23
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security user_roles table.
+      changes:
+        - sqlFile:
+            path: 006_create_table_user_roles.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/006_create_table_user_roles.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: db09f042-3f8e-4637-86eb-e6ced553d37f
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security oauth_accounts table.
+      changes:
+        - sqlFile:
+            path: 007_create_table_oauth_accounts.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/007_create_table_oauth_accounts.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: dcd0ae92-07f0-41d8-b573-729ed65214e7
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security sessions table.
+      changes:
+        - sqlFile:
+            path: 008_create_table_sessions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/008_create_table_sessions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: dcdce47b-1a82-45f6-b316-18bb71bd5e73
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security email_verifications table.
+      changes:
+        - sqlFile:
+            path: 009_create_table_email_verifications.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/009_create_table_email_verifications.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: bce30e2d-23ff-4458-ae26-604d68832d53
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security password_recovery table.
+      changes:
+        - sqlFile:
+            path: 010_create_table_password_recovery.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/010_create_table_password_recovery.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 2087f295-a9d2-4a9e-bc16-ca6d2bf21ffd
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security two_factor_auth table.
+      changes:
+        - sqlFile:
+            path: 011_create_table_two_factor_auth.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/011_create_table_two_factor_auth.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 4100881d-7577-4bd8-aeb1-dcd804a4be67
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security audit_logs table.
+      changes:
+        - sqlFile:
+            path: 012_create_table_audit_logs.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/012_create_table_audit_logs.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+ 
+
+  - changeSet:
+      id: 83d667f8-3ee8-44ef-8e30-66849afdeda4
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the security error_logs table.
+      changes:
+        - sqlFile:
+            path: 013_create_table_error_logs.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/013_create_table_error_logs.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+
+  - changeSet:
+      id: 53ece280-f886-4520-a44c-24e04e47a705
+      author: daniel2004-lsd
+      labels: "ddl,tables,security"
+      comment: Creates the default partition for security error_logs.
+      changes:
+        - sqlFile:
+            path: 014_create_table_refresh_tokens.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/014_create_table_refresh_tokens.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

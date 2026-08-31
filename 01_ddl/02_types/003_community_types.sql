@@ -1,3 +1,3 @@
-CREATE TYPE community.estado_reporte AS ENUM ('pendiente','en_revision','validado','rechazado');
-CREATE TYPE community.tipo_alerta    AS ENUM ('clima','obstaculo','mantenimiento','evento','emergencia');
+CREATE TYPE community.report_status AS ENUM ('pending','under_review','validated','rejected');
+CREATE TYPE community.alert_type    AS ENUM ('weather','obstacle','maintenance','event','emergency');
  
