@@ -158,3 +158,19 @@ databaseChangeLog:
             path: ../../05_rollbacks/01_ddl/03_table/004_mobility_module/009_create_table_ratings.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 8be76b80-6b7e-4ee3-b1a6-18b9e4d76866
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility"
+      comment: Adds updated_at to mobility route_usage to match the EF mapping.
+      changes:
+        - sqlFile:
+            path: 010_alter_table_route_usage_add_updated_at.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/010_alter_table_route_usage_add_updated_at.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
