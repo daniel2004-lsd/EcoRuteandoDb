@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/001_create_table_roles.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/001_create_table_roles.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -27,7 +27,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/002_create_table_permissions.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/002_create_table_permissions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -43,7 +43,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/003_create_table_role_permissions.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/003_create_table_role_permissions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -59,7 +59,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/004_create_table_security_policies.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/004_create_table_security_policies.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -75,7 +75,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/005_create_table_users.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/005_create_table_users.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -91,7 +91,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/006_create_table_user_roles.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/006_create_table_user_roles.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -107,7 +107,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/007_create_table_oauth_accounts.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/007_create_table_oauth_accounts.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -123,7 +123,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/008_create_table_sessions.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/008_create_table_sessions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -139,7 +139,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/009_create_table_email_verifications.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/009_create_table_email_verifications.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -155,7 +155,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/010_create_table_password_recovery.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/010_create_table_password_recovery.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -171,7 +171,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/011_create_table_two_factor_auth.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/011_create_table_two_factor_auth.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -187,7 +187,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/012_create_table_audit_logs.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/012_create_table_audit_logs.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -205,7 +205,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/013_create_table_error_logs.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/013_create_table_error_logs.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -222,6 +222,6 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/006_security_module/014_create_table_refresh_tokens.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/014_create_table_refresh_tokens.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

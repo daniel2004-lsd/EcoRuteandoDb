@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: "../../../05_rollbacks/01_ddl/04_constraints/001_additional_constraints_foreign_keys.rollback.sql"
+            path: "../../05_rollbacks/01_ddl/04_constraints/001_additional_constraints_foreign_keys.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false
   
@@ -28,7 +28,7 @@ databaseChangeLog:
 
       rollback:
         - sqlFile:
-            path: "../../../05_rollbacks/01_ddl/04_constraints002_alter_users_enum_to_varchar.rollback.sql"
+            path: "../../05_rollbacks/01_ddl/04_constraints/002_alter_users_enum_to_varchar.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false
 
@@ -46,6 +46,6 @@ databaseChangeLog:
 
       rollback:
         - sqlFile:
-            path: "../../../05_rollbacks/01_ddl/05_constraints/003_users_check_constraints.rollback.sql"
+            path: "../../05_rollbacks/01_ddl/04_constraints/003_users_check_constraints.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false

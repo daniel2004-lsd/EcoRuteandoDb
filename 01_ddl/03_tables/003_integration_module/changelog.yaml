@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/003_integration_module/001_create_table_api_cache.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/003_integration_module/001_create_table_api_cache.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -27,7 +27,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/003_integration_module/002_create_table_air_quality_data.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/003_integration_module/002_create_table_air_quality_data.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -43,6 +43,6 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/003_integration_module/003_create_table_weather_data.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/003_integration_module/003_create_table_weather_data.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
