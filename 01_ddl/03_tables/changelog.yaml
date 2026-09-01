@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - include:
+      file: 001_admin_module/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 002_community_module/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 003_integration_module/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 004_mobility__module/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 005_notification_module/changelog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 006_security_module/changelog.yaml
+      relativeToChangelogFile: true
+

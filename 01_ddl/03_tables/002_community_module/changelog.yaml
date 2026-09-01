@@ -1,0 +1,78 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8d56e06a-cad2-47f9-816b-968113f4b62c
+      author: daniel2004-lsd
+      labels: "ddl,tables,community"
+      comment: Creates the community obstacle_reports table.
+      changes:
+        - sqlFile:
+            path: "001_create_table_obstacle_reports.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/001_create_table_obstacle_reports.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 64bb89bc-9245-4b71-b947-138234b9bac9
+      author: daniel2004-lsd
+      labels: "ddl,tables,community"
+      comment: Creates the community report_votes table.
+      changes:
+        - sqlFile:
+            path: "002_create_table_report_votes.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/002_create_table_report_votes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: d6fd0e13-88f8-4473-a1e1-76fcf020e0ca
+      author: daniel2004-lsd
+      labels: "ddl,tables,community"
+      comment: Creates the community route_reports table.
+      changes:
+        - sqlFile:
+            path: 003_create_table_route_reports.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/003_create_table_route_reports.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 65e447cd-75ff-4ce6-8c3c-78d40f98748f
+      author: daniel2004-lsd
+      labels: "ddl,tables,community"
+      comment: Creates the community alert table.
+      changes:
+        - sqlFile:
+            path: 004_create_table_alerts.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/004_create_table_alerts.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+
+  - changeSet:
+      id: 460608a2-471e-45a1-a9f4-ea7d0c177380
+      author: daniel2004-lsd
+      labels: "ddl,tables,community"
+      comment: Creates the community alert_routes table.
+      changes:
+        - sqlFile:
+            path: 005_create_table_alert_route.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/005_create_table_alert_route.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
