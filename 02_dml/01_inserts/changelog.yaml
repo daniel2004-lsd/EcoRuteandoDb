@@ -107,3 +107,20 @@ databaseChangeLog:
                            'rolepermissions.read', 'rolepermissions.assign', 'rolepermissions.remove',
                            'userroles.read', 'userroles.assign', 'userroles.remove',
                            'securitypolicies.read', 'securitypolicies.update');
+
+  - changeSet:
+      id: 20e8a3f0-6c78-4f5c-8f6e-1d8f31a5b0c7
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility,cU03"
+      comment: "Grants the routes.delete permission to the User role (HU-12 CU03: the user manages routes he created; deletion is ownership-protected at application level)."
+      changes:
+        - sqlFile:
+            path: 007_insert_route_delete_permission_for_users.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sql: |
+            DELETE FROM security.role_permissions
+            WHERE role_id = (SELECT id FROM security.roles WHERE name = 'User')
+              AND permission_id = (SELECT id FROM security.permissions WHERE name = 'routes.delete');
