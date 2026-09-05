@@ -124,3 +124,20 @@ databaseChangeLog:
             DELETE FROM security.role_permissions
             WHERE role_id = (SELECT id FROM security.roles WHERE name = 'User')
               AND permission_id = (SELECT id FROM security.permissions WHERE name = 'routes.delete');
+
+  - changeSet:
+      id: 5b7c5a12-9d3e-4c2a-b1f4-8f73670d4196
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility,cU08"
+      comment: "Creates the stats.read permission and assigns it exclusively to the Admin role (HU-13 CU08: statistics portal is admin-only)."
+      changes:
+        - sqlFile:
+            path: 008_insert_stats_permission_for_admins.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/008_insert_stats_permission_for_admins.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
