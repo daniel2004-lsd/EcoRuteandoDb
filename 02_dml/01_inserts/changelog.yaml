@@ -141,3 +141,20 @@ databaseChangeLog:
             path: ../../05_rollbacks/02_dml/01_inserts/008_insert_stats_permission_for_admins.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 4d8b2f11-6a5e-4c9b-b8e2-7f4a90c12345
+      author: daniel2004-lsd
+      labels: "dml,inserts,community,cU07"
+      comment: "Creates the reports.* permissions and assigns them to the User (create/read own) and Admin (create/read/validate) roles (HU-16 CU07: citizen obstacle reports)."
+      changes:
+        - sqlFile:
+            path: 009_insert_report_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/009_insert_report_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
