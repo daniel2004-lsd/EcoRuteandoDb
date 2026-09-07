@@ -107,3 +107,54 @@ databaseChangeLog:
                            'rolepermissions.read', 'rolepermissions.assign', 'rolepermissions.remove',
                            'userroles.read', 'userroles.assign', 'userroles.remove',
                            'securitypolicies.read', 'securitypolicies.update');
+
+  - changeSet:
+      id: 20e8a3f0-6c78-4f5c-8f6e-1d8f31a5b0c7
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility,cU03"
+      comment: "Grants the routes.delete permission to the User role (HU-12 CU03: the user manages routes he created; deletion is ownership-protected at application level)."
+      changes:
+        - sqlFile:
+            path: 007_insert_route_delete_permission_for_users.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sql: |
+            DELETE FROM security.role_permissions
+            WHERE role_id = (SELECT id FROM security.roles WHERE name = 'User')
+              AND permission_id = (SELECT id FROM security.permissions WHERE name = 'routes.delete');
+
+  - changeSet:
+      id: 5b7c5a12-9d3e-4c2a-b1f4-8f73670d4196
+      author: daniel2004-lsd
+      labels: "dml,inserts,mobility,cU08"
+      comment: "Creates the stats.read permission and assigns it exclusively to the Admin role (HU-13 CU08: statistics portal is admin-only)."
+      changes:
+        - sqlFile:
+            path: 008_insert_stats_permission_for_admins.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/008_insert_stats_permission_for_admins.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 4d8b2f11-6a5e-4c9b-b8e2-7f4a90c12345
+      author: daniel2004-lsd
+      labels: "dml,inserts,community,cU07"
+      comment: "Creates the reports.* permissions and assigns them to the User (create/read own) and Admin (create/read/validate) roles (HU-16 CU07: citizen obstacle reports)."
+      changes:
+        - sqlFile:
+            path: 009_insert_report_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/009_insert_report_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
