@@ -174,3 +174,26 @@ databaseChangeLog:
             path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/010_alter_table_route_usage_add_updated_at.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: e432e61f-2593-4430-bbfa-9290e69f8089
+      author: eco-ruteando
+      labels: "ddl,tables,mobility"
+      comment: Adds interrupted boolean column to route_usage for partial CO2 tracking when a trip is interrupted before reaching the destination.
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                schemaName: mobility
+                tableName: route_usage
+                columnName: interrupted
+      changes:
+        - sqlFile:
+            path: 011_add_interrupted_column.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/011_add_interrupted_column.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
