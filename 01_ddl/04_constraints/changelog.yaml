@@ -66,3 +66,20 @@ databaseChangeLog:
             path: "../../05_rollbacks/01_ddl/04_constraints/004_add_updated_at_obstacle_reports.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: a5084e6b-e7a9-44e4-89d8-c60be92994dc
+      author: daniel2004-lsd
+      labels: "ddl,constraints,community,cU22"
+      comment: "Adds confidence_score to community.obstacle_reports for the community trust score (HU-22 CU22: validación comunitaria de reportes)."
+      changes:
+        - sqlFile:
+            path: "005_add_confidence_score_obstacle_reports.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: "../../05_rollbacks/01_ddl/04_constraints/005_add_confidence_score_obstacle_reports.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
