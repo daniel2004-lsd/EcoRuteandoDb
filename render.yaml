@@ -1,0 +1,17 @@
+# Render Blueprint: inicializa la BD de EcoRuteando con Liquibase.
+# Este servicio NO expone puerto; es un Cron Job que ejecuta `liquibase update`.
+# Es idempotente (usa DATABASECHANGELOG), así que correrlo es seguro siempre.
+services:
+  - type: cron
+    name: ecoruteando-db-migrate
+    runtime: docker
+    dockerfilePath: ./docker/liquibase/Dockerfile.render
+    dockerContext: .
+    # Diario a las 03:00 UTC. Ajusta la frecuencia si lo deseas.
+    schedule: "0 3 * * *"
+    envVars:
+      # Render inyecta DATABASE_URL automáticamente al vincular una BD a este servicio.
+      # En el dashboard: Dashboard del Cron Job -> Environment -> vincular la BD "ecoruteando-db".
+      # O define manualmente DATABASE_URL con el Connection String externo de la BD.
+      - key: DATABASE_URL
+        sync: false
