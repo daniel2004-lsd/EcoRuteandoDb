@@ -30,3 +30,19 @@ databaseChangeLog:
             path: ../../../05_rollbacks/01_ddl/03_tables/005_notification_module/002_create_table_notifications.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: a3b5c7d9-e1f2-4a3b-8c9d-1e2f3a4b5c6d
+      author: daniel2004-lsd
+      labels: "ddl,tables,notifications"
+      comment: Creates the notifications device_tokens table.
+      changes:
+        - sqlFile:
+            path: 003_create_table_device_tokens.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/005_notification_module/003_create_table_device_tokens.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

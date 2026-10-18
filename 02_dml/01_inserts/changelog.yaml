@@ -158,3 +158,20 @@ databaseChangeLog:
             path: ../../05_rollbacks/02_dml/01_inserts/009_insert_report_permissions.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 4713d197-78ec-48f5-96cf-3de2b23a48dd
+      author: daniel2004-lsd
+      labels: "dml,inserts,community,cU22"
+      comment: "Creates the reports.vote permission and assigns it to the User and Admin roles (HU-22 CU22: validación comunitaria de reportes)."
+      changes:
+        - sqlFile:
+            path: 010_insert_report_vote_permission.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/02_dml/01_inserts/010_insert_report_vote_permission.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

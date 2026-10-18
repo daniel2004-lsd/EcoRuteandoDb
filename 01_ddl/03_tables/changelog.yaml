@@ -12,9 +12,9 @@ databaseChangeLog:
       file: 004_mobility__module/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 005_notification_module/changelog.yaml
+      file: 006_security_module/changelog.yaml
       relativeToChangelogFile: true
   - include:
-      file: 006_security_module/changelog.yaml
+      file: 005_notification_module/changelog.yaml
       relativeToChangelogFile: true
 
