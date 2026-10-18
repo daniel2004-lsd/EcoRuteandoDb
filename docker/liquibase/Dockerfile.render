@@ -1,0 +1,23 @@
+# Imagen autónoma para inicializar/migrar la BD de Render con Liquibase.
+# Se construye desde la raíz del repo (dockerContext: .) e incluye los changelogs.
+FROM liquibase/liquibase:5.0.2
+
+USER root
+
+# Driver JDBC de PostgreSQL
+RUN mkdir -p /liquibase/lib
+ADD https://jdbc.postgresql.org/download/postgresql-42.7.8.jar /liquibase/lib/postgresql.jar
+ENV LIQUIBASE_CLASSPATH=/liquibase/lib/postgresql.jar
+
+# Copiar todo el esquema (changelogs + SQL) al contenedor
+WORKDIR /workspace
+COPY 01_ddl /workspace/01_ddl
+COPY 02_dml /workspace/02_dml
+COPY 03_dcl /workspace/03_dcl
+COPY changelog /workspace/changelog
+
+# Script que traduce DATABASE_URL de Render a JDBC y ejecuta update
+COPY docker/liquibase/entrypoint-render.sh /entrypoint-render.sh
+RUN chmod +x /entrypoint-render.sh
+
+ENTRYPOINT ["/entrypoint-render.sh"]
