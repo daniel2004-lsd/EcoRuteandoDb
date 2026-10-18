@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/002_community_module/001_create_table_obstacle_reports.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/001_create_table_obstacle_reports.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
@@ -26,7 +26,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/002_community_module/002_create_table_report_votes.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/002_create_table_report_votes.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
@@ -41,7 +41,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/002_community_module/003_create_table_route_reports.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/003_create_table_route_reports.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
   - changeSet:
@@ -56,7 +56,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/002_community_module/004_create_table_alerts.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/004_create_table_alerts.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -73,6 +73,6 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/002_community_module/005_create_table_alert_route.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/002_community_module/005_create_table_alert_route.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

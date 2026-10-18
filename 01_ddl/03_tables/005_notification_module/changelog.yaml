@@ -11,7 +11,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/005_notification_module/001_create_table_notification_templates.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/005_notification_module/001_create_table_notification_templates.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
 
@@ -27,6 +27,6 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sqlFile:
-            path: ../../05_rollbacks/01_ddl/03_table/005_notification_module/002_create_table_notifications.rollback.sql
+            path: ../../../05_rollbacks/01_ddl/03_tables/005_notification_module/002_create_table_notifications.rollback.sql
             relativeToChangelogFile: true
             stripComments: false

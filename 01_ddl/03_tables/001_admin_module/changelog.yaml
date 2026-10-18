@@ -11,7 +11,7 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/001_create_table_support_ticket.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/001_create_table_support_ticket.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
 
@@ -27,7 +27,7 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/002_create_table_support_messages.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/002_create_table_support_messages.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
 
@@ -43,7 +43,7 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/003_create_table_exports.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/003_create_table_exports.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
 
@@ -59,7 +59,7 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/004_create_table_system_configuration.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/004_create_table_system_configuration.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
 
@@ -75,7 +75,7 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/005_create_table_transport_factors.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/005_create_table_transport_factors.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
 
@@ -91,6 +91,6 @@
               stripComments: false
         rollback:
           - sqlFile:
-              path: ../../05_rollbacks/01_ddl/03_table/001_admin_module/006_create_table_daily_statistics.rollback.sql
+              path: ../../../05_rollbacks/01_ddl/03_tables/001_admin_module/006_create_table_daily_statistics.rollback.sql
               relativeToChangelogFile: true
               stripComments: false
