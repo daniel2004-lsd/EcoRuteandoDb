@@ -225,17 +225,3 @@ databaseChangeLog:
             path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/014_create_table_refresh_tokens.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
-
-  - changeSet:
-      id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
-      author: daniel2004-lsd
-      labels: "ddl,tables,security"
-      comment: Alter profile_photo_url from VARCHAR(500) to TEXT for base64 photos.
-      changes:
-        - sqlFile:
-            path: 015_alter_profile_photo_url_to_text.sql
-            relativeToChangelogFile: true
-            stripComments: false
-      rollback:
-        - sql:
-            sql: ALTER TABLE users ALTER COLUMN profile_photo_url TYPE VARCHAR(500);

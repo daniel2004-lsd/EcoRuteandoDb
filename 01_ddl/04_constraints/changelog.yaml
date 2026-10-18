@@ -49,3 +49,20 @@ databaseChangeLog:
             path: "../../05_rollbacks/01_ddl/04_constraints/003_users_check_constraints.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: 6a1e8f92-3b7c-4d5e-9a4f-8c2b1d0e5f74
+      author: daniel2004-lsd
+      labels: "ddl,constraints,community,cU07"
+      comment: "Adds the updated_at column to community.obstacle_reports to align with the EF entity mapping (HU-16 CU07: citizen obstacle reports)."
+      changes:
+        - sqlFile:
+            path: "004_add_updated_at_obstacle_reports.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: "../../05_rollbacks/01_ddl/04_constraints/004_add_updated_at_obstacle_reports.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
