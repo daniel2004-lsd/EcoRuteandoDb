@@ -83,3 +83,20 @@ databaseChangeLog:
             path: "../../05_rollbacks/01_ddl/04_constraints/005_add_confidence_score_obstacle_reports.rollback.sql"
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: ea04d732-891f-4283-973d-f9a09c11460d
+      author: daniel2004-lsd
+      labels: "ddl,constraints,security,H-63"
+      comment: "Align default value of security.users.status to lowercase 'active' with chk_users_status."
+      changes:
+        - sqlFile:
+            path: "006_alter_users_status_default.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+      rollback:
+        - sqlFile:
+            path: "../../05_rollbacks/01_ddl/04_constraints/006_alter_users_status_default.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
