@@ -239,3 +239,19 @@ databaseChangeLog:
       rollback:
         - sql:
             sql: ALTER TABLE users ALTER COLUMN profile_photo_url TYPE VARCHAR(500);
+
+  - changeSet:
+      id: 29dea0b8-14c7-4629-8435-60b569a8eb6a
+      author: daniel2004-lsd
+      labels: "ddl,tables,security,H-23,H-24"
+      comment: Creates the security trusted_devices table for 2FA trusted device management.
+      changes:
+        - sqlFile:
+            path: 016_create_table_trusted_devices.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/006_security_module/016_create_table_trusted_devices.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
