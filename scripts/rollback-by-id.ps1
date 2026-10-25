@@ -3,11 +3,11 @@ param(
 
     [string]$Author,
 
-    [string]$ProjectName = "shopping-cart-db",
+    [string]$ProjectName = $(if ($env:COMPOSE_PROJECT_NAME) { $env:COMPOSE_PROJECT_NAME } else { "ecoRuteando_db" }),
 
-    [string]$DbUser = "shopping_cart_user",
+    [string]$DbUser = $(if ($env:POSTGRES_USER) { $env:POSTGRES_USER } else { "postgres" }),
 
-    [string]$DbName = "shopping_cart",
+    [string]$DbName = $(if ($env:POSTGRES_DB) { $env:POSTGRES_DB } else { "ecoRuteando_db" }),
 
     [switch]$Execute,
 
@@ -19,6 +19,16 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $false
+
+# Safety check: Prevent execution against shared or production databases
+if ($env:ENVIRONMENT -in @("production", "prod", "main", "shared") -or
+    $DbName -match "(?i)prod|production|shared") {
+    throw "EXECUTION BLOCKED: Rollback script cannot be run against production or shared environments ($DbName)."
+}
+
+if ([string]::IsNullOrWhiteSpace($ProjectName) -or [string]::IsNullOrWhiteSpace($DbUser) -or [string]::IsNullOrWhiteSpace($DbName)) {
+    throw "CONFIGURATION ERROR: ProjectName, DbUser, and DbName must be defined. Please set environment variables or pass explicit parameters."
+}
 
 function Invoke-PsqlScalar {
     param(
@@ -200,7 +210,7 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 Push-Location $repoRoot
 try {
     if ([string]::IsNullOrWhiteSpace($ChangesetId)) {
-        $ChangesetId = Read-Host "Enter changeset id (example: 005-create-billing-tables)"
+        $ChangesetId = Read-Host "Enter changeset id (example: 29dea0b8-14c7-4629-8435-60b569a8eb6a)"
     }
 
     if ([string]::IsNullOrWhiteSpace($ChangesetId)) {
