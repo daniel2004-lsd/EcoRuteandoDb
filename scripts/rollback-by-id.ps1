@@ -3,11 +3,11 @@ param(
 
     [string]$Author,
 
-    [string]$ProjectName = "shopping-cart-db",
+    [string]$ProjectName = "ecoRuteando_db",
 
-    [string]$DbUser = "shopping_cart_user",
+    [string]$DbUser = "postgres",
 
-    [string]$DbName = "shopping_cart",
+    [string]$DbName = "ecoRuteando_db",
 
     [switch]$Execute,
 

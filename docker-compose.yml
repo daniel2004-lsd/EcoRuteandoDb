@@ -31,18 +31,21 @@ services:
     volumes:
     - ./:/workspace
 
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ecoRuteando_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-ecoRuteando_db}
+      LIQUIBASE_COMMAND_CHANGELOG_FILE: changelog/db.changelog-master.yaml
+      LIQUIBASE_COMMAND_USERNAME: ${POSTGRES_USER:-postgres}
+      LIQUIBASE_COMMAND_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+
     entrypoint:
     - sh
     - -c
 
     command: >
-      "sleep 10 &&
-      liquibase
-      --changeLogFile=changelog/db.changelog-master.yaml
-      --url=jdbc:postgresql://postgres:5432/ecoRuteando_db
-      --username=postgres
-      --password=postgres
-      update"
+      "sleep 2 && liquibase update"
 
 volumes:
   postgres_data:

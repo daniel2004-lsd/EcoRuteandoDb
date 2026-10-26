@@ -58,26 +58,40 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Cache Liquibase Binary
+      - name: Cache Liquibase Binary and JDBC Driver
         id: cache-liquibase
         uses: actions/cache@v5
         with:
           path: liquibase-bin
-          key: liquibase-4.27.0-bin
+          key: liquibase-5.0.2-pg-42.7.8-bin
 
-      - name: Download Liquibase
+      - name: Download Liquibase and PostgreSQL JDBC Driver
         if: steps.cache-liquibase.outputs.cache-hit != 'true'
         run: |
-          mkdir -p liquibase-bin
-          LIQUIBASE_VERSION=4.27.0
+          mkdir -p liquibase-bin/lib
+          LIQUIBASE_VERSION=5.0.2
+          POSTGRES_DRIVER_VERSION=42.7.8
+
           curl -fL -o liquibase.tar.gz \
             https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
           tar -xzf liquibase.tar.gz -C liquibase-bin
+          rm -f liquibase.tar.gz
           chmod +x liquibase-bin/liquibase
 
-      - name: Add Liquibase to PATH
+          curl -fL -o liquibase-bin/lib/postgresql.jar \
+            https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar
+
+          test -f liquibase-bin/liquibase || { echo "ERROR: liquibase binary missing"; exit 1; }
+          test -x liquibase-bin/liquibase || { echo "ERROR: liquibase binary not executable"; exit 1; }
+          test -f liquibase-bin/lib/postgresql.jar || { echo "ERROR: PostgreSQL JDBC driver missing"; exit 1; }
+
+      - name: Add Liquibase to PATH and Verify Installation
         run: |
           echo "$(pwd)/liquibase-bin" >> $GITHUB_PATH
+          test -f "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not found"; exit 1; }
+          test -x "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not executable"; exit 1; }
+          test -f "$(pwd)/liquibase-bin/lib/postgresql.jar" || { echo "ERROR: PostgreSQL JDBC driver jar not found"; exit 1; }
+          "$(pwd)/liquibase-bin/liquibase" --version
 
       - name: Validate Changelog Syntax
         run: |
