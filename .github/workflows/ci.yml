@@ -1,60 +1,196 @@
-name: CI Database (Liquibase Validation)
+name: Database CI
 
 on:
   pull_request:
     branches:
       - develop
+      - qa
+      - main
+  push:
+    branches:
+      - develop
+      - qa
+      - main
+
+permissions:
+  contents: read
 
 jobs:
-  validate:
+  validate-and-migrate:
+    name: Database Migration & Rollback Validation
     runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres:16
+        image: postgis/postgis:16-3.5
         env:
-          POSTGRES_DB: ecoruteando
+          POSTGRES_DB: ecoruteando_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-      - name: Esperar PostgreSQL
-        run: sleep 10
+      - name: Verify PostgreSQL readiness
+        run: |
+          for i in {1..30}; do
+            if pg_isready -h localhost -p 5432 -U postgres -d ecoruteando_test; then
+              echo "PostgreSQL with PostGIS is ready and accepting connections."
+              exit 0
+            fi
+            echo "Waiting for PostgreSQL ($i/30)..."
+            sleep 1
+          done
+          echo "ERROR: PostgreSQL did not become ready in time."
+          exit 1
 
-      - name: Instalar Java
-        uses: actions/setup-java@v4
+      - name: Setup Java Runtime
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
 
-      - name: Descargar Liquibase
+      - name: Cache Liquibase Binary and JDBC Driver
+        id: cache-liquibase
+        uses: actions/cache@v5
+        with:
+          path: liquibase-bin
+          key: liquibase-5.0.2-pg-42.7.8-bin
+
+      - name: Download Liquibase and PostgreSQL JDBC Driver
+        if: steps.cache-liquibase.outputs.cache-hit != 'true'
         run: |
-          LIQUIBASE_VERSION=4.27.0
+          mkdir -p liquibase-bin/lib
+          LIQUIBASE_VERSION=5.0.2
+          POSTGRES_DRIVER_VERSION=42.7.8
 
           curl -fL -o liquibase.tar.gz \
-          https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
+            https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
+          tar -xzf liquibase.tar.gz -C liquibase-bin
+          rm -f liquibase.tar.gz
+          chmod +x liquibase-bin/liquibase
 
-          tar -xzf liquibase.tar.gz
+          curl -fL -o liquibase-bin/lib/postgresql.jar \
+            https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar
 
-      - name: Validar changelog (PRO)
+          test -f liquibase-bin/liquibase || { echo "ERROR: liquibase binary missing"; exit 1; }
+          test -x liquibase-bin/liquibase || { echo "ERROR: liquibase binary not executable"; exit 1; }
+          test -f liquibase-bin/lib/postgresql.jar || { echo "ERROR: PostgreSQL JDBC driver missing"; exit 1; }
+
+      - name: Add Liquibase to PATH and Verify Installation
         run: |
-          ./liquibase \
-            --url="jdbc:postgresql://localhost:5432/ecoruteando" \
+          echo "$(pwd)/liquibase-bin" >> $GITHUB_PATH
+          test -f "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not found"; exit 1; }
+          test -x "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not executable"; exit 1; }
+          test -f "$(pwd)/liquibase-bin/lib/postgresql.jar" || { echo "ERROR: PostgreSQL JDBC driver jar not found"; exit 1; }
+          "$(pwd)/liquibase-bin/liquibase" --version
+
+      - name: Validate Changelog Syntax
+        run: |
+          liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando_test" \
             --username=postgres \
             --password=postgres \
             --changeLogFile=changelog/db.changelog-master.yaml \
             validate
 
-      - name: Simular migración (updateSQL)
+      - name: Apply Migrations (liquibase update)
         run: |
-          ./liquibase \
-            --url="jdbc:postgresql://localhost:5432/ecoruteando" \
+          liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando_test" \
             --username=postgres \
             --password=postgres \
             --changeLogFile=changelog/db.changelog-master.yaml \
-            updateSQL
+            update
+
+      - name: Verify Post-Migration Database State
+        env:
+          PGPASSWORD: postgres
+        run: |
+          echo "=== 1. Verifying PostGIS Extension ==="
+          psql -h localhost -U postgres -d ecoruteando_test -c "SELECT PostGIS_Full_Version();"
+
+          echo "=== 2. Verifying Expected Schemas ==="
+          psql -h localhost -U postgres -d ecoruteando_test -c "
+            SELECT schema_name
+            FROM information_schema.schemata
+            WHERE schema_name IN ('security', 'community', 'notifications', 'integrations', 'admin', 'mobility')
+            ORDER BY schema_name;
+          "
+
+          echo "=== 3. Verifying Table Counts by Schema ==="
+          psql -h localhost -U postgres -d ecoruteando_test -c "
+            SELECT table_schema, count(*) AS table_count
+            FROM information_schema.tables
+            WHERE table_schema IN ('security', 'community', 'notifications', 'integrations', 'admin', 'mobility')
+            GROUP BY table_schema
+            ORDER BY table_schema;
+          "
+
+          echo "=== 4. Verifying Total Applied Changesets ==="
+          psql -h localhost -U postgres -d ecoruteando_test -c "
+            SELECT count(*) AS total_applied_changesets
+            FROM public.databasechangelog;
+          "
+
+      - name: Test Controlled Rollback (Single Changeset)
+        env:
+          PGPASSWORD: postgres
+        run: |
+          echo "=== 1. Inspecting Top Changeset to Roll Back ==="
+          psql -h localhost -U postgres -d ecoruteando_test -c "
+            SELECT id, author, filename, dateexecuted
+            FROM public.databasechangelog
+            ORDER BY orderexecuted DESC
+            LIMIT 1;
+          "
+
+          echo "=== 2. Executing Controlled Rollback (1 Changeset) ==="
+          liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando_test" \
+            --username=postgres \
+            --password=postgres \
+            --changeLogFile=changelog/db.changelog-master.yaml \
+            rollbackCount 1
+
+          echo "=== 3. Verifying Rollback Effect ==="
+          VOTE_COUNT=$(psql -h localhost -U postgres -d ecoruteando_test -t -A -c "
+            SELECT count(*) FROM security.permissions WHERE name = 'reports.vote';
+          ")
+          echo "reports.vote count after rollback: $VOTE_COUNT"
+          if [ "$VOTE_COUNT" -ne 0 ]; then
+            echo "ERROR: reports.vote permission was not removed by rollback!"
+            exit 1
+          fi
+          echo "Rollback successfully removed reports.vote permission."
+
+      - name: Reapply Migrations and Confirm Clean Final State
+        env:
+          PGPASSWORD: postgres
+        run: |
+          echo "=== 1. Reapplying Migrations ==="
+          liquibase \
+            --url="jdbc:postgresql://localhost:5432/ecoruteando_test" \
+            --username=postgres \
+            --password=postgres \
+            --changeLogFile=changelog/db.changelog-master.yaml \
+            update
+
+          echo "=== 2. Verifying reports.vote is restored ==="
+          VOTE_COUNT=$(psql -h localhost -U postgres -d ecoruteando_test -t -A -c "
+            SELECT count(*) FROM security.permissions WHERE name = 'reports.vote';
+          ")
+          echo "reports.vote count after re-update: $VOTE_COUNT"
+          if [ "$VOTE_COUNT" -ne 1 ]; then
+            echo "ERROR: reports.vote permission was not restored!"
+            exit 1
+          fi
+          echo "Final state confirmed: all migrations re-applied successfully."

@@ -1,0 +1,10 @@
+DROP INDEX IF EXISTS community.idx_obstacle_reports_location;
+DROP INDEX IF EXISTS community.idx_alerts_impact_area;
+DROP INDEX IF EXISTS integrations.idx_air_quality_data_location;
+DROP INDEX IF EXISTS integrations.idx_weather_data_location;
+DROP INDEX IF EXISTS mobility.idx_points_of_interest_location;
+DROP INDEX IF EXISTS mobility.idx_routes_start_location;
+DROP INDEX IF EXISTS mobility.idx_routes_end_location;
+DROP INDEX IF EXISTS mobility.idx_routes_geometry;
+DROP INDEX IF EXISTS mobility.idx_route_usage_actual_route;
+DROP INDEX IF EXISTS mobility.idx_address_history_location;

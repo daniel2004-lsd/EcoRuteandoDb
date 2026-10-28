@@ -1,1 +1,32 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: dfdfda64-fb7c-49f4-a123-144b255b41d7
+      author: daniel2004-lsd
+      labels: "ddl,indexes,spatial,postgis,H-22"
+      comment: "Creates spatial GiST indexes for all PostGIS geography columns across tables (H-22)."
+      changes:
+        - sqlFile:
+            path: "001_create_spatial_gist_indexes.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: "../../05_rollbacks/01_ddl/10_indexes/001_create_spatial_gist_indexes.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 9a992e68-d15e-488d-b9b6-df01dbc1d0d4
+      author: daniel2004-lsd
+      labels: "ddl,indexes,btree,operational,H-22"
+      comment: "Creates operational B-Tree indexes for status filtering, queries, and foreign key traversal (H-22)."
+      changes:
+        - sqlFile:
+            path: "002_create_operational_btree_indexes.sql"
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: "../../05_rollbacks/01_ddl/10_indexes/002_create_operational_btree_indexes.rollback.sql"
+            relativeToChangelogFile: true
+            stripComments: false

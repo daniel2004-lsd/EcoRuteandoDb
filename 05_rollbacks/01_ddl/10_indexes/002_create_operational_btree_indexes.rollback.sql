@@ -1,0 +1,11 @@
+DROP INDEX IF EXISTS mobility.idx_routes_status_transport;
+DROP INDEX IF EXISTS mobility.idx_routes_created_by;
+DROP INDEX IF EXISTS community.idx_obstacle_reports_active_filter;
+DROP INDEX IF EXISTS community.idx_obstacle_reports_user_id;
+DROP INDEX IF EXISTS mobility.idx_route_usage_user_id;
+DROP INDEX IF EXISTS mobility.idx_route_usage_route_id;
+DROP INDEX IF EXISTS security.idx_users_status;
+DROP INDEX IF EXISTS mobility.idx_ratings_route_id;
+DROP INDEX IF EXISTS mobility.idx_points_of_interest_active_type;
+DROP INDEX IF EXISTS admin.idx_support_tickets_user_id;
+DROP INDEX IF EXISTS admin.idx_support_tickets_status_priority;
