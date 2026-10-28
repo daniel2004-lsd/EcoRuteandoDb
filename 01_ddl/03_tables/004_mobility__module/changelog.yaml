@@ -197,3 +197,21 @@ databaseChangeLog:
             path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/011_add_interrupted_column.rollback.sql
             relativeToChangelogFile: true
             stripComments: false
+
+  - changeSet:
+      id: bf4d2674-a702-45e6-a118-bdf05eabef59
+      author: daniel2004-lsd
+      labels: "ddl,tables,mobility,H-52"
+      comment: "Alters mobility.ratings.usage_id column type from BIGINT to UUID to align with mobility.route_usage."
+      changes:
+        - sqlFile:
+            path: 012_alter_ratings_usage_id_type.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
