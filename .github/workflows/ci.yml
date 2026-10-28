@@ -151,6 +151,47 @@ jobs:
             FROM public.databasechangelog;
           "
 
+      - name: Execute Migration SQL Test Suite (tests/DbMigrations)
+        env:
+          PGPASSWORD: postgres
+        run: |
+          echo "=== 1. Discovering and Executing Migration SQL Tests ==="
+          TEST_COUNT=0
+          for test_file in tests/DbMigrations/*_test.sql; do
+            if [ -f "$test_file" ]; then
+              echo "--------------------------------------------------------"
+              echo "Executing migration test: $test_file"
+              psql -h localhost -U postgres -d ecoruteando_test -v ON_ERROR_STOP=1 -f "$test_file"
+              echo "PASSED: $test_file"
+              TEST_COUNT=$((TEST_COUNT + 1))
+            fi
+          done
+
+          if [ "$TEST_COUNT" -eq 0 ]; then
+            echo "ERROR: No migration SQL tests found in tests/DbMigrations/"
+            exit 1
+          fi
+          echo "Total migration tests executed: $TEST_COUNT"
+
+          echo "=== 2. Verifying Database Integrity Post-Tests ==="
+          TOTAL_CS=$(psql -h localhost -U postgres -d ecoruteando_test -t -A -c "
+            SELECT count(*) FROM public.databasechangelog;
+          ")
+          if [ "$TOTAL_CS" -ne 82 ]; then
+            echo "ERROR: Database changelog count corrupted after tests! Expected 82, got $TOTAL_CS"
+            exit 1
+          fi
+
+          USAGE_TYPE=$(psql -h localhost -U postgres -d ecoruteando_test -t -A -c "
+            SELECT data_type FROM information_schema.columns
+            WHERE table_schema = 'mobility' AND table_name = 'ratings' AND column_name = 'usage_id';
+          ")
+          if [ "$USAGE_TYPE" != "uuid" ]; then
+            echo "ERROR: mobility.ratings.usage_id corrupted after tests! Expected uuid, got $USAGE_TYPE"
+            exit 1
+          fi
+          echo "Post-test database integrity verified: schema and changesets intact."
+
       - name: Test Controlled Rollback (Single Changeset)
         env:
           PGPASSWORD: postgres

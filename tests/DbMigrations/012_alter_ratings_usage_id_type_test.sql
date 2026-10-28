@@ -2,7 +2,7 @@
 -- Test Suite for Migration 012 and Rollback 012
 -- Target: Safe alteration of mobility.ratings.usage_id from BIGINT to UUID
 -- Execution: psql -v ON_ERROR_STOP=1 -f 012_alter_ratings_usage_id_type_test.sql
--- (Run from the tests/DbMigrations/ directory on a disposable test database)
+-- (Can be executed from any working directory on a disposable test database using \ir)
 -- ============================================================================
 
 \set ON_ERROR_STOP 1
@@ -41,7 +41,7 @@ $$;
 CALL mobility.test_setup_clean_ratings();
 
 -- Run real migration file on empty table
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 
 DO $$
 BEGIN
@@ -53,7 +53,7 @@ BEGIN
 END $$;
 
 -- Run real rollback file on empty table
-\i ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+\ir ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
 
 DO $$
 BEGIN
@@ -76,7 +76,7 @@ INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
     ('44444444-4444-4444-4444-444444444444', uuid_generate_v4(), uuid_generate_v4(), 9223372036854775807, 5);
 
 -- Apply Migration using real migration script
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 
 DO $$
 DECLARE
@@ -107,7 +107,7 @@ BEGIN
 END $$;
 
 -- Test Rollback on Test 2 Data using real rollback script
-\i ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+\ir ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
 
 DO $$
 BEGIN
@@ -151,7 +151,7 @@ VALUES ('55555555-5555-5555-5555-555555555555', 999, FALSE);
 SAVEPOINT sp_test3;
 \set ON_ERROR_STOP 0
 \set ERROR false
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 \set ON_ERROR_STOP 1
 
 \if :ERROR
@@ -180,7 +180,7 @@ END $$;
 CALL mobility.test_setup_clean_ratings();
 
 -- Migrate
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 
 -- Insert a brand new rating post-migration with a genuine UUID usage_id
 INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
@@ -189,7 +189,7 @@ INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
 SAVEPOINT sp_test4;
 \set ON_ERROR_STOP 0
 \set ERROR false
-\i ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+\ir ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
 \set ON_ERROR_STOP 1
 
 \if :ERROR
@@ -218,7 +218,7 @@ INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
     ('77777777-7777-7777-7777-777777777777', uuid_generate_v4(), uuid_generate_v4(), 50, 4);
 
 -- Migrate
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 
 -- Modify existing rating with a new UUID post-migration
 UPDATE mobility.ratings
@@ -228,7 +228,7 @@ WHERE id = '77777777-7777-7777-7777-777777777777';
 SAVEPOINT sp_test5;
 \set ON_ERROR_STOP 0
 \set ERROR false
-\i ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+\ir ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
 \set ON_ERROR_STOP 1
 
 \if :ERROR
@@ -257,14 +257,14 @@ INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
     ('88888888-8888-8888-8888-888888888888', uuid_generate_v4(), uuid_generate_v4(), 75, 4);
 
 -- Migrate
-\i ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
+\ir ../../01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.sql
 
 -- Insert a new rating post-migration with NULL usage_id (allowed and supported)
 INSERT INTO mobility.ratings (id, user_id, route_id, usage_id, rating) VALUES
     ('99999999-9999-9999-9999-999999999999', uuid_generate_v4(), uuid_generate_v4(), NULL, 5);
 
 -- Rollback
-\i ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
+\ir ../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
 
 DO $$
 BEGIN
