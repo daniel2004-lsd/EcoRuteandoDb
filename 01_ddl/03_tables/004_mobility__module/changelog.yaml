@@ -207,9 +207,11 @@ databaseChangeLog:
         - sqlFile:
             path: 012_alter_ratings_usage_id_type.sql
             relativeToChangelogFile: true
+            splitStatements: false
             stripComments: false
       rollback:
         - sqlFile:
             path: ../../../05_rollbacks/01_ddl/03_tables/004_mobility__module/012_alter_ratings_usage_id_type.rollback.sql
             relativeToChangelogFile: true
+            splitStatements: false
             stripComments: false
