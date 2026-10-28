@@ -1,5 +1,5 @@
 param(
-    [string]$ProjectName = "ecoRuteando_db",
+    [string]$ProjectName = $(if ($env:COMPOSE_PROJECT_NAME) { $env:COMPOSE_PROJECT_NAME } else { "ecoRuteando_db" }),
     [switch]$OnlyNext,
     [switch]$AllPending,
     [switch]$AutoConfirm
