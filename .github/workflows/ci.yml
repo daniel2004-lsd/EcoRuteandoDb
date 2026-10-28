@@ -65,12 +65,11 @@ jobs:
           path: liquibase-bin
           key: liquibase-5.0.2-pg-42.7.8-bin
 
-      - name: Download Liquibase and PostgreSQL JDBC Driver
+      - name: Download Liquibase
         if: steps.cache-liquibase.outputs.cache-hit != 'true'
         run: |
           mkdir -p liquibase-bin/lib
           LIQUIBASE_VERSION=5.0.2
-          POSTGRES_DRIVER_VERSION=42.7.8
 
           curl -fL -o liquibase.tar.gz \
             https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
@@ -78,12 +77,21 @@ jobs:
           rm -f liquibase.tar.gz
           chmod +x liquibase-bin/liquibase
 
-          curl -fL -o liquibase-bin/lib/postgresql.jar \
-            https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar
-
           test -f liquibase-bin/liquibase || { echo "ERROR: liquibase binary missing"; exit 1; }
           test -x liquibase-bin/liquibase || { echo "ERROR: liquibase binary not executable"; exit 1; }
+
+      - name: Download PostgreSQL JDBC Driver
+        run: |
+          mkdir -p liquibase-bin/lib
+          POSTGRES_DRIVER_VERSION=42.7.8
+          if [ ! -f liquibase-bin/lib/postgresql.jar ] || [ ! -s liquibase-bin/lib/postgresql.jar ] || ! unzip -t -q liquibase-bin/lib/postgresql.jar >/dev/null 2>&1; then
+            echo "Downloading PostgreSQL JDBC driver ${POSTGRES_DRIVER_VERSION}..."
+            curl -fL -o liquibase-bin/lib/postgresql.jar \
+              https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar
+          fi
           test -f liquibase-bin/lib/postgresql.jar || { echo "ERROR: PostgreSQL JDBC driver missing"; exit 1; }
+          test -s liquibase-bin/lib/postgresql.jar || { echo "ERROR: PostgreSQL JDBC driver file is empty"; exit 1; }
+          unzip -t -q liquibase-bin/lib/postgresql.jar >/dev/null 2>&1 || { echo "ERROR: PostgreSQL JDBC driver is not a valid ZIP/JAR archive"; exit 1; }
 
       - name: Add Liquibase to PATH and Verify Installation
         run: |
@@ -91,6 +99,8 @@ jobs:
           test -f "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not found"; exit 1; }
           test -x "$(pwd)/liquibase-bin/liquibase" || { echo "ERROR: liquibase binary not executable"; exit 1; }
           test -f "$(pwd)/liquibase-bin/lib/postgresql.jar" || { echo "ERROR: PostgreSQL JDBC driver jar not found"; exit 1; }
+          test -s "$(pwd)/liquibase-bin/lib/postgresql.jar" || { echo "ERROR: PostgreSQL JDBC driver jar is empty"; exit 1; }
+          unzip -t -q "$(pwd)/liquibase-bin/lib/postgresql.jar" >/dev/null 2>&1 || { echo "ERROR: PostgreSQL JDBC driver jar is not a valid ZIP/JAR archive"; exit 1; }
           "$(pwd)/liquibase-bin/liquibase" --version
 
       - name: Validate Changelog Syntax

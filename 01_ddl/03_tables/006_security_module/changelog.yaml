@@ -214,7 +214,7 @@ databaseChangeLog:
       id: 53ece280-f886-4520-a44c-24e04e47a705
       author: daniel2004-lsd
       labels: "ddl,tables,security"
-      comment: Creates the default partition for security error_logs.
+      comment: Creates the security refresh_tokens table.
       changes:
         - sqlFile:
             path: 014_create_table_refresh_tokens.sql
@@ -238,7 +238,7 @@ databaseChangeLog:
             stripComments: false
       rollback:
         - sql:
-            sql: ALTER TABLE users ALTER COLUMN profile_photo_url TYPE VARCHAR(500);
+            sql: ALTER TABLE security.users ALTER COLUMN profile_photo_url TYPE VARCHAR(500);
 
   - changeSet:
       id: 29dea0b8-14c7-4629-8435-60b569a8eb6a
