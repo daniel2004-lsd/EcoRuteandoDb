@@ -238,8 +238,8 @@ try {
     if (-not $Author) {
         $authorCount = [int](Invoke-PsqlScalar -Sql "SELECT COUNT(DISTINCT author) FROM public.databasechangelog WHERE id = '$idEscaped';" -ProjectName $ProjectName -DbUser $DbUser -DbName $DbName)
         if ($authorCount -gt 1) {
-            $matches = docker compose -p $ProjectName exec -T postgres psql -U $DbUser -d $DbName -c "SELECT id, author, filename, orderexecuted FROM public.databasechangelog WHERE id = '$idEscaped' ORDER BY orderexecuted;"
-            throw "Multiple authors found for id '$ChangesetId'. Re-run with -Author.`n$matches"
+            $matchedRows = docker compose -p $ProjectName exec -T postgres psql -U $DbUser -d $DbName -c "SELECT id, author, filename, orderexecuted FROM public.databasechangelog WHERE id = '$idEscaped' ORDER BY orderexecuted;"
+            throw "Multiple authors found for id '$ChangesetId'. Re-run with -Author.`n$matchedRows"
         }
     }
 
