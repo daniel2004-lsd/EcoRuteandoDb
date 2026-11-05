@@ -20,4 +20,6 @@ COPY changelog /workspace/changelog
 COPY docker/liquibase/entrypoint-render.sh /entrypoint-render.sh
 RUN chmod +x /entrypoint-render.sh
 
+USER liquibase
+
 ENTRYPOINT ["/entrypoint-render.sh"]
