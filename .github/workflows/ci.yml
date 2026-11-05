@@ -71,7 +71,7 @@ jobs:
           mkdir -p liquibase-bin/lib
           LIQUIBASE_VERSION=5.0.2
 
-          curl -fL -o liquibase.tar.gz \
+          curl --proto '=https' --tlsv1.2 -fL -o liquibase.tar.gz \
             https://github.com/liquibase/liquibase/releases/download/v${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}.tar.gz
           tar -xzf liquibase.tar.gz -C liquibase-bin
           rm -f liquibase.tar.gz
@@ -86,7 +86,7 @@ jobs:
           POSTGRES_DRIVER_VERSION=42.7.8
           if [ ! -f liquibase-bin/lib/postgresql.jar ] || [ ! -s liquibase-bin/lib/postgresql.jar ] || ! unzip -t -q liquibase-bin/lib/postgresql.jar >/dev/null 2>&1; then
             echo "Downloading PostgreSQL JDBC driver ${POSTGRES_DRIVER_VERSION}..."
-            curl -fL -o liquibase-bin/lib/postgresql.jar \
+            curl --proto '=https' --tlsv1.2 -fL -o liquibase-bin/lib/postgresql.jar \
               https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar
           fi
           test -f liquibase-bin/lib/postgresql.jar || { echo "ERROR: PostgreSQL JDBC driver missing"; exit 1; }
